@@ -90,7 +90,7 @@
           alt="man on mountain"
         />
         <p
-          class="absolute text-white bottom-0 w-1/2 right-0 mr-24 text-xs p-2 drop-shadow-md"
+          class="absolute text-white bottom-0 w-1/3 right-20 mr-24 text-xs p-2 drop-shadow-md"
         >
           At 10,000 ft elevation, you will put your rig to the test — if
           anything fails, don't let it ruin your trip. All Peaks Mobile RV
