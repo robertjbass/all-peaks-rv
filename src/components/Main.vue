@@ -149,6 +149,14 @@
           placeholder="Enter your email"
         />
         <hr />
+        <label for="email">Phone *</label><br />
+        <input
+          v-model="phone"
+          class="bg-gray-100 w-full h-14 p-2"
+          type="text"
+          placeholder="Enter your phone number"
+        />
+        <hr />
         <label for="subject">Subject</label><br />
         <input
           v-model="subject"
@@ -198,6 +206,7 @@ export default {
       email: null,
       subject: null,
       message: null,
+      phone: null,
     };
   },
   methods: {
@@ -212,7 +221,7 @@ export default {
       const url = "https://formspree.io/f/mknyrzvw";
       const data = {
         email: this.email,
-        message: `name: ${this.name} (${this.email}) subject: ${this.subject} message: ${this.message}`,
+        message: `name: ${this.name}\nphone: ${this.phone}\nemail: ${this.email}\nsubject: ${this.subject}\nmessage: ${this.message}`,
       };
       axios
         .post(url, data)
@@ -249,16 +258,25 @@ export default {
     },
     errors() {
       const errors = [];
-      if (
-        this.email?.length &&
-        (!this.email?.split("")?.includes(".") ||
-          !this.email?.split("")?.includes("@"))
-      )
+
+      const isValidEmail = (email) => {
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return regex.test(email);
+      };
+
+      if (!this.phone) {
+        errors.push("Please enter a phone number");
+      }
+
+      if (!isValidEmail(this.email)) {
         errors.push("Please enter a valid email address");
-      if (this.name?.length && !this.email?.length)
+      }
+      if (this.name?.length && !this.email?.length) {
         errors.push("Please enter a valid email");
-      if (!this.name?.length && this.email?.length)
+      }
+      if (!this.name?.length && this.email?.length) {
         errors.push("Please enter a name");
+      }
       return errors.join(" - ");
     },
   },
