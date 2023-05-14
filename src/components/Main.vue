@@ -212,11 +212,7 @@ export default {
       const url = "https://formspree.io/f/mknyrzvw";
       const data = {
         email: this.email,
-        message:
-          "name: " + this.name ||
-          "" + " subject: " + this.subject ||
-          "" + " message: " + this.message ||
-          "",
+        message: `name: ${this.name} (${this.email}) subject: ${this.subject} message: ${this.message}`,
       };
       axios
         .post(url, data)
